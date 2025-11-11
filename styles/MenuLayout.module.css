@@ -1,0 +1,98 @@
+/*
+**********************************************************************************************************************************************
+  ▢ 작성일자: 2025. 11. 11.(화)
+  ▢ 파일명: MenuLayout.module.css
+  ▢ 내용: 공통적으로 적용되는 레이아웃(/components/MenuLayout.js) 컴포넌트에 적용되는 스타일(사이드바 + 메인 콘텐츠 레이아웃)
+  ▢ 작성자: 박수훈(shpark)
+**********************************************************************************************************************************************
+*/
+
+/* 전체 레이아웃 컨테이너 */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+/* 왼쪽 사이드바 */
+.sidebar {
+  width: 16rem;
+  background: #2f80ed;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+/* 사이드바 헤더 */
+.sidebarHeader {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: #2874d4;
+}
+
+.sidebarHeader h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* 네비게이션 영역 */
+.nav {
+  flex: 1;
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* 네비게이션 아이템 */
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  font-size: 1rem;
+  width: 100%;
+  border-left: 4px solid transparent;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-left-color: #56ccf2;
+  color: white;
+  transform: translateX(4px);
+}
+
+/* 네비게이션 아이콘 */
+.navIcon {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  min-width: 1.5rem;
+}
+
+/* 네비게이션 라벨 */
+.navLabel {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* 오른쪽 메인 컨텐츠 영역 */
+.content {
+  flex: 1;
+  padding: 2.5rem;
+  overflow-y: auto;
+  background: #f5f7fa;
+}
