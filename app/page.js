@@ -1,66 +1,42 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+/*
+ ***************************************************************************
+ * ▢ 작성일자: 2025. 11. 11.(화)
+ * ▢ 페이지명: page.js(가계부 앱 메인화면)
+ * ▢ 내용: Next.js App Router 방식으로 동작하는 어플리케이션의 메인화면입니다.
+ * ▢ 작성자: 박수훈(shpark)
+ ***************************************************************************
+ */
+
+import Link from 'next/link';
+import styles from '@/styles/page.module.css';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>SH budget</h1>
+        <p className={styles.subtitle}>나의 가계부</p>
+      </div>
+
+      <div className={styles.menuCards}>
+        <Link href='/expense' className={styles.card}>
+          <div className={styles.icon}>📊</div>
+          <h2>지출 관리</h2>
+          <p>수입/지출 입력 및 관리</p>
+        </Link>
+
+        <Link href='/stats' className={styles.card}>
+          <div className={styles.icon}>📈</div>
+          <h2>통계 보기</h2>
+          <p>지출 분석 및 리포트</p>
+        </Link>
+
+        <Link href='/settings' className={styles.card}>
+          <div className={styles.icon}>⚙️</div>
+          <h2>설정</h2>
+          <p>카테고리 및 환경설정</p>
+        </Link>
+      </div>
     </div>
   );
 }
