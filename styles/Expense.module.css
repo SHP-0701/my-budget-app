@@ -2,7 +2,188 @@
 **************************************************************************
   ▢ 작성일자: 2025. 11. 11.(화)
   ▢ 파일명: Expense.module.css
-  ▢ 내용: 지출관리 대시보드(/expense/page.js) 컴포넌트에 적용되는 스타일
+  ▢ 내용: 지출관리 대시보드(/expense/page.js) 스타일
   ▢ 작성자: 박수훈(shpark)
 **************************************************************************
 */
+
+/* 전체 컨테이너 */
+.container {
+  max-width: 1200px;
+}
+
+/* 페이지 제목 */
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2f80ed;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(47, 128, 237, 0.1);
+}
+
+/* 페이지 부제목 */
+.subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 2.5rem;
+  border-left: 4px solid #2f80ed;
+  padding-left: 1rem;
+}
+
+/* 요약 카드 Grid */
+.summaryCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* 개별 카드 */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.15);
+}
+
+/* 카드 아이콘 */
+.cardIcon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+/* 카드 내용 */
+.cardContent {
+  flex: 1;
+}
+
+/* 카드 라벨 */
+.cardLabel {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+/* 카드 값 */
+.cardValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #2f80ed;
+  margin: 0;
+}
+
+/* 최근 거래 내역 섹션 */
+.recentSection {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* 테이블 영역 */
+.tableArea {
+  flex: 1;
+  max-width: 900px;
+}
+
+/* 섹션 제목 */
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #2f80ed;
+}
+
+/* 테이블 래퍼(Wrapper) */
+.tableWrapper {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 최근 거래 내역 테이블 */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* 각 열 너비 지정 */
+.table colgroup col:nth-child(1) {
+  width: 22%; /* 날짜 */
+}
+
+.table colgroup col:nth-child(2) {
+  width: 20%; /* 카테고리 */
+}
+
+.table colgroup col:nth-child(3) {
+  width: 38%; /* 내용 - 가장 넓게 */
+}
+
+.table colgroup col:nth-child(4) {
+  width: 20%; /* 금액 */
+}
+
+.table thead {
+  background: #f9fafb;
+}
+
+.table th {
+  padding: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #4b5563;
+  font-size: 0.875rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.table td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
+  color: #1f2937;
+}
+
+.table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 카테고리 뱃지 */
+.categoryBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background: #dbeafe;
+  color: #2f80ed;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* 금액(수입) */
+.table td.amountIncome {
+  color: #10b981;
+  font-weight: 600;
+}
+
+/* 금액(지출) */
+.table td.amountExpense {
+  color: #ef4444;
+  font-weight: 600;
+}
