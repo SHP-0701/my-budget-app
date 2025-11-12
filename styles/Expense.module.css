@@ -81,7 +81,7 @@
   margin: 0;
 }
 
-/* 최근 거래 내역 섹션 */
+/* 최근 거래 내역 및 빠른 액션 버튼 섹션 */
 .recentSection {
   margin-top: 3rem;
   display: flex;
@@ -184,6 +184,117 @@
 
 /* 금액(지출) */
 .table td.amountExpense {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+/* 오른쪽 사이드 영역(빠른 액션 메뉴 + 지출 예정) */
+.sideArea {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 빠른 액션 영역 */
+.quickActionsArea {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 빠른 액션 섹션 제목 */
+.quickActionsTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #2f80ed;
+}
+
+/* 빠른 액션 버튼 */
+.actionButton {
+  padding: 1rem 1.5rem;
+  background: #2f80ed;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.actionButton:hover {
+  background: #1e5bb8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.3);
+}
+
+.actionButton.secondary {
+  background: #fff;
+  color: #2f80ed;
+  border: 2px solid #2f80ed;
+}
+
+.actionButton.secondary:hover {
+  background: #f0f8ff;
+}
+
+/* 지출 예정 내역 영역 */
+.upcomingExpensesArea {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upcomingExpensesTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #2f80ed;
+}
+
+/* 지출 예정 카드 */
+.upcomingExpensesCard {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 예정 항목 */
+.upcomingItem {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.upcomingItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.upcomingDate {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.upcomingDesc {
+  font-size: 0.875rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.upcomingAmount {
+  font-size: 0.875rem;
   color: #ef4444;
   font-weight: 600;
 }

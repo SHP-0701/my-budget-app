@@ -10,10 +10,14 @@
 **********************************************************************************************************************************************
 */
 
+'use client';
 import MenuLayout from '@/components/MenuLayout';
 import styles from '@/styles/Expense.module.css';
+import { useRouter } from 'next/navigation';
 
 export default function ExpenseDashboard() {
+  const router = useRouter();
+
   // 더미 데이터(추후 실제 데이터로 교체)
   const summaryData = {
     totalExpense: 1234500,
@@ -64,6 +68,13 @@ export default function ExpenseDashboard() {
       amount: -45000,
       type: 'expense',
     },
+  ];
+
+  // 더미 데이터_3(지출 예정 내역)
+  const upcomingExpenses = [
+    { id: 1, date: '11/15', description: '통신비', amount: 55000 },
+    { id: 2, date: '11/20', description: '보험료', amount: 120000 },
+    { id: 3, date: '11/25', description: '월세', amount: 500000 },
   ];
 
   // 오늘 날짜
@@ -121,7 +132,7 @@ export default function ExpenseDashboard() {
           </div>
         </div>
 
-        {/* 최근 거래 내역(5개) */}
+        {/* 최근 거래 내역 및 빠른 액션 버튼 */}
         <div className={styles.recentSection}>
           {/** 테이블 영역 */}
           <div className={styles.tableArea}>
@@ -165,6 +176,44 @@ export default function ExpenseDashboard() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          {/** 오른쪽 사이드 영역 */}
+          <div className={styles.sideArea}>
+            {/* 빠른 액션 영역 */}
+            <div className={styles.quickActionsArea}>
+              <h2 className={styles.quickActionsTitle}>빠른 메뉴</h2>
+              <button
+                className={styles.actionButton}
+                onClick={() => router.push('/expense/input')}
+              >
+                ✏️ 지출 입력
+              </button>
+              <button
+                className={`${styles.actionButton} ${styles.secondary}`}
+                onClick={() => router.push('/expense/list')}
+              >
+                📋 내역 전체
+              </button>
+            </div>
+
+            {/* 지출 예정 내역 */}
+            <div className={styles.upcomingExpensesArea}>
+              <h2 className={styles.upcomingExpensesTitle}>지출 예정</h2>
+              <div className={styles.upcomingExpensesCard}>
+                {upcomingExpenses.map((item) => (
+                  <div key={item.id} className={styles.upcomingItem}>
+                    <span className={styles.upcomingDate}>{item.date}</span>
+                    <span className={styles.upcomingDesc}>
+                      {item.description}
+                    </span>
+                    <span className={styles.upcomingAmount}>
+                      {item.amount.toLocaleString()}원
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
