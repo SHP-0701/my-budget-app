@@ -81,7 +81,7 @@
   margin: 0;
 }
 
-/* 최근 거래 내역 및 빠른 액션 버튼 섹션 */
+/* 최근 거래 내역 및 오른쪽 영역 섹션 */
 .recentSection {
   margin-top: 3rem;
   display: flex;
@@ -91,8 +91,7 @@
 
 /* 테이블 영역 */
 .tableArea {
-  flex: 1;
-  max-width: 900px;
+  flex: 0 0 65%;
 }
 
 /* 섹션 제목 */
@@ -190,7 +189,7 @@
 
 /* 오른쪽 사이드 영역(빠른 액션 메뉴 + 지출 예정) */
 .sideArea {
-  width: 200px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -208,13 +207,20 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: #1f2937;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 2px solid #2f80ed;
 }
 
+/* 빠른 액션 버튼 배치 컨테이너 */
+.quickActionsButtons {
+  display: flex;
+  gap: 0.75rem;
+}
+
 /* 빠른 액션 버튼 */
 .actionButton {
+  flex: 1;
   padding: 1rem 1.5rem;
   background: #2f80ed;
   color: #fff;
@@ -251,50 +257,111 @@
   gap: 1rem;
 }
 
+/* 스크롤바 적용 */
+.upcomingExpensesArea .tableWrapper {
+  height: 243px;
+  display: flex;
+  flex-direction: column;
+}
+
 .upcomingExpensesTitle {
   font-size: 1.5rem;
   font-weight: 700;
   color: #1f2937;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   padding-bottom: 0.75rem;
   border-bottom: 2px solid #2f80ed;
 }
 
-/* 지출 예정 카드 */
-.upcomingExpensesCard {
-  background: #fff;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* 예정 항목 */
-.upcomingItem {
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #f3f4f6;
+/* 지출 예정 테이블 */
+.upcomingTable {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  height: 100%;
 }
 
-.upcomingItem:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+/* 지출 예정 테이블 thead */
+.upcomingTable thead {
+  background: #f9fafb;
+  flex-shrink: 0;
+  display: block;
 }
 
-.upcomingDate {
-  font-size: 0.75rem;
-  color: #6b7280;
+/* 지출 예정 테이블 tbody만 스크롤 */
+.upcomingTable tbody {
+  display: block;
+  overflow-y: auto;
+  flex: 1;
 }
 
-.upcomingDesc {
+/* 지출 예정 테이블 커스텀 스크롤바 추가 */
+.upcomingTable tbody::-webkit-scrollbar {
+  width: 5px;
+}
+
+.upcomingTable tbody::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.upcomingTable tbody::-webkit-scrollbar-thumb {
+  background: #2f80ed;
+  border-radius: 10px;
+}
+
+.upcomingTable tbody::-webkit-scrollbar-thumb:hover {
+  background: #1e5bb8;
+}
+
+.upcomingTable th {
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  color: #4b5563;
   font-size: 0.875rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.upcomingTable thead tr,
+.upcomingTable tbody tr {
+  display: flex;
+  width: 100%;
+}
+
+/* th, td에 flex 기반 너비 설정 */
+.upcomingTable th:nth-child(1),
+.upcomingTable td:nth-child(1) {
+  flex: 0 0 20%; /* 날짜 */
+}
+
+.upcomingTable th:nth-child(2),
+.upcomingTable td:nth-child(2) {
+  flex: 0 0 50%; /* 내용 */
+}
+
+.upcomingTable th:nth-child(3),
+.upcomingTable td:nth-child(3) {
+  flex: 0 0 30%; /* 금액 */
+}
+
+.upcomingTable td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #f3f4f6;
   color: #1f2937;
-  font-weight: 500;
+  font-size: 0.875rem;
 }
 
-.upcomingAmount {
-  font-size: 0.875rem;
+.upcomingTable tbody tr:hover {
+  background: #f9fafb;
+}
+
+.upcomingTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* 지출 예정 금액 */
+.upcomingTable td.upcomingAmount {
   color: #ef4444;
   font-weight: 600;
 }

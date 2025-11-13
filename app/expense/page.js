@@ -75,6 +75,7 @@ export default function ExpenseDashboard() {
     { id: 1, date: '11/15', description: '통신비', amount: 55000 },
     { id: 2, date: '11/20', description: '보험료', amount: 120000 },
     { id: 3, date: '11/25', description: '월세', amount: 500000 },
+    { id: 4, date: '11/27', description: '생일선물', amount: 200000 },
   ];
 
   // 오늘 날짜
@@ -132,7 +133,7 @@ export default function ExpenseDashboard() {
           </div>
         </div>
 
-        {/* 최근 거래 내역 및 빠른 액션 버튼 */}
+        {/* 최근 거래 내역 및 오른쪽 영역(빠른 액션 + 지출 예정) */}
         <div className={styles.recentSection}>
           {/** 테이블 영역 */}
           <div className={styles.tableArea}>
@@ -179,40 +180,56 @@ export default function ExpenseDashboard() {
             </div>
           </div>
 
-          {/** 오른쪽 사이드 영역 */}
+          {/** 오른쪽 사이드 영역(빠른 메뉴 + 지출 예정) */}
           <div className={styles.sideArea}>
-            {/* 빠른 액션 영역 */}
+            {/* 빠른 액션 영역(버튼 가로 배치) */}
             <div className={styles.quickActionsArea}>
               <h2 className={styles.quickActionsTitle}>빠른 메뉴</h2>
-              <button
-                className={styles.actionButton}
-                onClick={() => router.push('/expense/input')}
-              >
-                ✏️ 지출 입력
-              </button>
-              <button
-                className={`${styles.actionButton} ${styles.secondary}`}
-                onClick={() => router.push('/expense/list')}
-              >
-                📋 내역 전체
-              </button>
+              <div className={styles.quickActionsButtons}>
+                <button
+                  className={styles.actionButton}
+                  onClick={() => router.push('/expense/input')}
+                >
+                  ✏️ 지출 입력
+                </button>
+                <button
+                  className={`${styles.actionButton} ${styles.secondary}`}
+                  onClick={() => router.push('/expense/list')}
+                >
+                  📋 내역 전체
+                </button>
+              </div>
             </div>
 
-            {/* 지출 예정 내역 */}
+            {/* 지출 예정 내역(테이블 형식) */}
             <div className={styles.upcomingExpensesArea}>
               <h2 className={styles.upcomingExpensesTitle}>지출 예정</h2>
-              <div className={styles.upcomingExpensesCard}>
-                {upcomingExpenses.map((item) => (
-                  <div key={item.id} className={styles.upcomingItem}>
-                    <span className={styles.upcomingDate}>{item.date}</span>
-                    <span className={styles.upcomingDesc}>
-                      {item.description}
-                    </span>
-                    <span className={styles.upcomingAmount}>
-                      {item.amount.toLocaleString()}원
-                    </span>
-                  </div>
-                ))}
+              <div className={styles.tableWrapper}>
+                <table className={styles.upcomingTable}>
+                  <colgroup>
+                    <col />
+                    <col />
+                    <col />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>날짜</th>
+                      <th>내용</th>
+                      <th>금액</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {upcomingExpenses.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.date}</td>
+                        <td>{item.description}</td>
+                        <td className={styles.upcomingAmount}>
+                          {item.amount.toLocaleString()}원
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
