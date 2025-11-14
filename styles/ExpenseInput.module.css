@@ -1,0 +1,358 @@
+/*
+**********************************************************************************************************************************************
+  ▢ 작성일자: 2025. 11. 14.(금)
+  ▢ 파일명: /styles/ExpenseInput.module.css
+  ▢ 내용: 지출 입력(/expense/input/page.js) CSS 스타일
+  ▢ 작성자: 박수훈(shpark)
+**********************************************************************************************************************************************
+*/
+
+/* 전체 컨테이너 */
+.pageContainer {
+  max-width: 1200px;
+}
+
+/* 페이지 제목 영역 */
+.header {
+  margin-bottom: 2rem;
+}
+
+/* 페이지 제목 */
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2f80ed;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(47, 128, 237, 0.1);
+}
+
+/* 페이지 부제목 */
+.subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  border-left: 4px solid #2f80ed;
+  padding-left: 1rem;
+}
+
+/* 메인 컨텐츠 영역(2열 레이아웃) */
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* 폼(form) 전체 */
+.form {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 행(2개 컬럼이 존재) */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* 행(전체 너비 활용, 1개 컬럼 존재) */
+.fullRow {
+  margin-bottom: 1.5rem;
+}
+
+/* 입력 그룹 */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* 라벨 */
+.label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+/* 라벨 아이콘 */
+.icon {
+  color: #2f80ed;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* 일반 입력 필드 */
+.input {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #2f80ed;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+}
+
+/* 셀렉트 박스 */
+.select {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #2f80ed;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+}
+
+/* 라디오 버튼 그룹 */
+.radioGroup {
+  display: flex;
+  gap: 2rem;
+  padding: 0.75rem 0;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #1f2937;
+}
+
+.radioLabel input[type='radio'] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #2f80ed;
+}
+
+/* 금액 입력 래퍼(Wrapper) */
+.amountWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.amountWrapper .input {
+  flex: 1;
+}
+
+.unit {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+/* TextArea(내용 및 메모 입력) */
+.textarea {
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #2f80ed;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+}
+
+/* 버튼 그룹 */
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* 버튼 공통(common) */
+.button {
+  padding: 0.875rem 2.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 취소 버튼 */
+.cancelButton {
+  background: #fff;
+  color: #6b7280;
+  border: 2px solid #d1d5db;
+}
+
+.cancelButton:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* 저장 버튼 */
+.submitButton {
+  background: #2f80ed;
+  color: #fff;
+}
+
+.submitButton:hover {
+  background: #1e5bb8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(47, 128, 237, 0.3);
+}
+
+/** 지출 예정 내역 섹션 스타일 */
+/* 예정 내역 컨테이너 */
+.scheduleSection {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  max-height: 650px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 예정 내역 제목 */
+.scheduleTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #2f80ed;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 예정 내역 리스트 영역 */
+.scheduleList {
+  flex: 1;
+  max-height: 385px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+/* 스크롤바 스타일링 */
+.scheduleList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scheduleList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scheduleList::-webkit-scrollbar-thumb {
+  background: #2f80ed;
+  border-radius: 10px;
+}
+
+.scheduleList::-webkit-scrollbar-thumb:hover {
+  background: #1e5bb8;
+}
+
+/* 예정 내역 카드 */
+.scheduleCard {
+  background: #f9fafb;
+  border-left: 4px solid #2f80ed;
+  padding: 0.875rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scheduleCard:hover {
+  background: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.scheduleCard:hover .deleteButton {
+  opacity: 1;
+}
+
+/* 삭제 버튼 */
+.deleteButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  opacity: 0;
+}
+
+.deleteButton:hover {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+/* 카드 내 날짜 */
+.scheduleDate {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+/* 카드 내 내용(이름) */
+.scheduleName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.3rem;
+}
+
+/* 카드 내 금액 */
+.scheduleAmount {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ef4444; /* 빨간색 (지출) */
+}
+
+/* 빈 메시지 */
+.emptyMessage {
+  text-align: center;
+  color: #9ca3af;
+  padding: 3rem 1rem;
+  font-size: 0.95rem;
+}

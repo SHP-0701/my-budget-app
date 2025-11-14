@@ -5,6 +5,7 @@
   ▢ 내용
     - 지출 관리(expense) 중 지출/수입 입력을 담당(/expense/input 으로 페이지 호출)
     - 사이드메뉴에서 '지출 입력' 메뉴를 선택하면 출력되는 페이지(또는 지출 관리 대시보드 내 빠른 메뉴 버튼 '지출 입력')
+    - 좌측(입력 폼 영역) + 우측(지출 예정 내역 카드) 화면 구성
   ▢ 작성자: 박수훈(shpark)
 **********************************************************************************************************************************************
 */
@@ -14,6 +15,14 @@ import { useState } from 'react';
 import MenuLayout from '@/components/MenuLayout';
 import styles from '@/styles/ExpenseInput.module.css';
 import { useRouter } from 'next/navigation';
+import {
+  FaCalendarAlt,
+  FaMoneyBillWave,
+  FaListAlt,
+  FaStickyNote,
+  FaCalendarCheck,
+  FaTimes,
+} from 'react-icons/fa';
 
 export default function ExpenseInput() {
   const router = useRouter();
@@ -32,6 +41,23 @@ export default function ExpenseInput() {
     expense: ['식비', '교통', '쇼핑', '의료', '문화', '기타'],
     income: ['급여', '상여', '기타'],
   };
+
+  // 이번 달 지출 예정 내역(더미 데이터)
+  const [scheduleExpenses, setScheduleExpenses] = useState([
+    { id: 1, date: '2025-11-09', name: '넷플릭스 구독료', amount: 14500 },
+    { id: 2, date: '2025-11-10', name: '후불교통대금', amount: 67500 },
+    { id: 3, date: '2025-11-21', name: '통신비', amount: 86500 },
+    { id: 4, date: '2025-11-25', name: '보험료', amount: 145000 },
+    { id: 5, date: '2025-11-09', name: '넷플릭스 구독료', amount: 14500 },
+    { id: 6, date: '2025-11-10', name: '후불교통대금', amount: 67500 },
+    { id: 7, date: '2025-11-21', name: '통신비', amount: 86500 },
+    { id: 8, date: '2025-11-25', name: '보험료', amount: 145000 },
+    { id: 9, date: '2025-11-10', name: '후불교통대금', amount: 67500 },
+    /* 
+    { id: 10, date: '2025-11-21', name: '통신비', amount: 86500 },
+    { id: 11, date: '2025-11-25', name: '보험료', amount: 145000 },
+    */
+  ]);
 
   // 입력값 변경 핸들러
   const handleChange = (e) => {
@@ -77,108 +103,192 @@ export default function ExpenseInput() {
     router.push('/expense');
   };
 
+  // 지출 예정 내역 삭제 핸들러
+  const handleDeleteScheduleExpenses = (id) => {
+    // 사용자에게 확인 받기
+    if (confirm('해당 예정 내역을 삭제하시겠습니까?')) {
+      setScheduleExpenses((prev) => prev.filter((item) => item.id !== id));
+    }
+  };
+
   return (
     <MenuLayout>
-      <div className={styles.container}>
-        <h1 className={styles.title}>지출 입력</h1>
-        <p className={styles.subtitle}>수입과 지출을 기록하세요</p>
+      <div className={styles.pageContainer}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>지출 입력</h1>
+          <p className={styles.subtitle}>수입과 지출을 기록하세요</p>
+        </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          {/** 첫 번째 행: 날짜 + 구분(지출/수입) */}
-          <div className={styles.row}>
-            {/** 날짜 */}
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>날짜</label>
-              <input
-                type='date'
-                name='date'
-                value={formData.date}
-                onChange={handleChange}
-                className={styles.input}
-              />
-            </div>
-
-            {/** 구분 */}
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>구분</label>
-              <div className={styles.radioGroup}>
-                <label className={styles.radioLabel}>
+        {/** 메인 컨텐츠 영역: 왼쪽(입력폼) + 오른쪽(지출예정내역) */}
+        <div className={styles.mainContent}>
+          {/** 입력 폼을 감싸는 섹션 */}
+          <div className={styles.formSection}>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              {/** 첫 번째 행: 날짜 + 구분(지출/수입) */}
+              <div className={styles.row}>
+                {/** 날짜 */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>
+                    <FaCalendarAlt className={styles.icon} />
+                    날짜
+                  </label>
                   <input
-                    type='radio'
-                    name='type'
-                    value='expense'
-                    checked={formData.type === 'expense'}
-                    onChange={() => handleTypeChange('expense')}
+                    type='date'
+                    name='date'
+                    value={formData.date}
+                    onChange={handleChange}
+                    className={styles.input}
                   />
-                  <span>지출</span>
-                </label>
-                <label className={styles.radioLabel}>
-                  <input
-                    type='radio'
-                    name='type'
-                    value='income'
-                    checked={formData.type === 'income'}
-                    onChange={() => handleTypeChange('income')}
+                </div>
+
+                {/** 구분 */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>
+                    <FaMoneyBillWave className={styles.icon} />
+                    구분
+                  </label>
+                  <div className={styles.radioGroup}>
+                    <label className={styles.radioLabel}>
+                      <input
+                        type='radio'
+                        name='type'
+                        value='expense'
+                        checked={formData.type === 'expense'}
+                        onChange={() => handleTypeChange('expense')}
+                      />
+                      <span>지출</span>
+                    </label>
+                    <label className={styles.radioLabel}>
+                      <input
+                        type='radio'
+                        name='type'
+                        value='income'
+                        checked={formData.type === 'income'}
+                        onChange={() => handleTypeChange('income')}
+                      />
+                      <span>수입</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              {/** 두 번째 행: 카테고리 + 금액 */}
+              <div className={styles.row}>
+                {/** 카테고리 */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>
+                    <FaListAlt className={styles.icon} />
+                    카테고리
+                  </label>
+                  <select
+                    name='category'
+                    value={formData.category}
+                    onChange={handleChange}
+                    className={styles.select}
+                  >
+                    <option value=''>선택하세요</option>
+                    {categories[formData.type].map((category) => (
+                      <option key={category} value={category}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/** 금액 */}
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>
+                    <FaMoneyBillWave className={styles.icon} />
+                    금액
+                  </label>
+                  <div className={styles.amountWrapper}>
+                    <input
+                      type='number'
+                      name='amount'
+                      value={formData.amount}
+                      onChange={handleChange}
+                      placeholder='0'
+                      className={styles.input}
+                      min='0'
+                    />
+                    <span className={styles.unit}>원</span>
+                  </div>
+                </div>
+              </div>
+
+              {/** 세 번째 행: 내용(전체 너비 사용) */}
+              <div className={styles.fullRow}>
+                <div className={styles.inputGroup}>
+                  <label className={styles.label}>
+                    <FaStickyNote className={styles.icon} />
+                    내용 및 메모
+                  </label>
+                  <textarea
+                    name='description'
+                    value={formData.description}
+                    onChange={handleChange}
+                    placeholder='상세 내용을 입력하세요(선택사항)'
+                    className={styles.textarea}
+                    rows={4}
                   />
-                  <span>수입</span>
-                </label>
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/** 두 번째 행: 카테고리 + 금액 */}
-          <div className={styles.row}>
-            {/** 카테고리 */}
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>카테고리</label>
-              <select
-                name='category'
-                value={formData.category}
-                onChange={handleChange}
-                className={styles.select}
-              >
-                <option value=''>선택하세요</option>
-                {categories[formData.type].map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {/** 금액 */}
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>금액</label>
-              <div className={styles.amountWrapper}>
-                <input
-                  type='number'
-                  name='amount'
-                  value={formData.amount}
-                  onChange={handleChange}
-                  placeholder='0'
-                  className={styles.input}
-                  min='0'
-                />
-                <span className={styles.unit}>원</span>
+              {/** 버튼 영역 */}
+              <div className={styles.buttonGroup}>
+                <button
+                  type='button'
+                  onClick={handleCancel}
+                  className={`${styles.button} ${styles.cancelButton}`}
+                >
+                  취소
+                </button>
+                <button
+                  type='submit'
+                  onClick={handleSubmit}
+                  className={`${styles.button} ${styles.submitButton}`}
+                >
+                  저장
+                </button>
               </div>
-            </div>
+            </form>
           </div>
 
-          {/** 세 번째 행: 내용(전체 너비 사용) */}
-          <div className={styles.fullRow}>
-            <div className={styles.inputGroup}>
-              <label className={styles.label}>내용 및 메모</label>
-              <textarea
-                name='description'
-                value={formData.description}
-                onChange={handleChange}
-                placeholder='상세 내용을 입력하세요(선택사항)'
-                className={styles.textarea}
-                rows={4}
-              />
+          {/** 지출 예정 내역 섹션 */}
+          <div className={styles.scheduleSection}>
+            <h2 className={styles.scheduleTitle}>
+              <FaCalendarCheck className={styles.icon} />
+              이번 달 지출 예정
+            </h2>
+
+            <div className={styles.scheduleList}>
+              {scheduleExpenses.length > 0 ? (
+                scheduleExpenses.map((item) => (
+                  <div
+                    key={item.id}
+                    className={styles.scheduleCard}
+                    data-card-id={item.id}
+                  >
+                    <button
+                      className={styles.deleteButton}
+                      onClick={() => handleDeleteScheduleExpenses(item.id)}
+                      aria-label='삭제'
+                    >
+                      <FaTimes />
+                    </button>
+                    <div className={styles.scheduleDate}>{item.date}</div>
+                    <div className={styles.scheduleName}>{item.name}</div>
+                    <div className={styles.scheduleAmount}>{item.amount}</div>
+                  </div>
+                ))
+              ) : (
+                <div className={styles.emptyMessage}>
+                  예정 된 지출 내역이 없습니다.
+                </div>
+              )}
             </div>
           </div>
-        </form>
+        </div>
       </div>
     </MenuLayout>
   );
