@@ -15,6 +15,38 @@
 /* 페이지 제목 영역 */
 .header {
   margin-bottom: 2rem;
+  position: relative;
+}
+
+/* 대시보드 돌아가기 버튼 */
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  margin-bottom: 16px;
+  background: #60a5fa;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(96, 165, 250, 0.2);
+}
+
+.backButton:hover {
+  background: #3b82f6; /* hover 시 조금 더 진하게 */
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.backButton:active {
+  transform: scale(0.98);
+}
+
+.backButton svg {
+  font-size: 18px;
 }
 
 /* 페이지 제목 */

@@ -1,0 +1,58 @@
+/*
+**********************************************************************************************************************************************
+  ▢ 작성일자: 2025. 11. 17.(월)
+  ▢ 파일명: /styles/ExpenseScheduleModal.module.css
+  ▢ 내용: 지출 입력 페이지에서 사용하는 모달(/components/ExpenseScheduleModal.js) CSS 스타일
+  ▢ 작성자: 박수훈(shpark)
+**********************************************************************************************************************************************
+*/
+
+/* 폼 컨테이너 */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 입력 그룹 */
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.label .icon {
+  color: #6366f1;
+  font-size: 16px;
+}
+
+/* 입력 필드 */
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1f2937;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}

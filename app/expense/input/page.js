@@ -23,6 +23,7 @@ import {
   FaCalendarCheck,
   FaTimes,
 } from 'react-icons/fa';
+import { IoMdArrowBack } from 'react-icons/io';
 
 export default function ExpenseInput() {
   const router = useRouter();
@@ -115,6 +116,15 @@ export default function ExpenseInput() {
     <MenuLayout>
       <div className={styles.pageContainer}>
         <div className={styles.header}>
+          {/** 대시보드로 돌아가기 버튼 */}
+          <button
+            onClick={handleCancel}
+            className={styles.backButton}
+            type='button'
+          >
+            <IoMdArrowBack />
+            대시보드
+          </button>
           <h1 className={styles.title}>지출 입력</h1>
           <p className={styles.subtitle}>수입과 지출을 기록하세요</p>
         </div>
