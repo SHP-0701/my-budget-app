@@ -13,6 +13,7 @@
 'use client';
 import { useState } from 'react';
 import MenuLayout from '@/components/MenuLayout';
+import ExpenseScheduleModal from '@/components/ExpenseScheduleModal';
 import styles from '@/styles/ExpenseInput.module.css';
 import { useRouter } from 'next/navigation';
 import {
@@ -22,11 +23,18 @@ import {
   FaStickyNote,
   FaCalendarCheck,
   FaTimes,
+  FaEdit,
+  FaPlus,
 } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
 
 export default function ExpenseInput() {
   const router = useRouter();
+
+  // 모달 상태(state) 관리
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMode, setModalMode] = useState('add'); // add(등록) or edit(수정)
+  const [editItem, setEditItem] = useState(null); // 지출 예정 내역 수정을 위한 state
 
   // 입력 폼 상태(state) 관리
   const [formData, setFormData] = useState({
@@ -266,10 +274,25 @@ export default function ExpenseInput() {
 
           {/** 지출 예정 내역 섹션 */}
           <div className={styles.scheduleSection}>
-            <h2 className={styles.scheduleTitle}>
-              <FaCalendarCheck className={styles.icon} />
-              이번 달 지출 예정
-            </h2>
+            {/** 제목 및 추가 버튼 감싸는 래퍼(Wrapper) */}
+            <div className={styles.scheduleTitleWrapper}>
+              <h2 className={styles.scheduleTitle}>
+                <FaCalendarCheck className={styles.icon} />
+                이번 달 지출 예정
+              </h2>
+              <button
+                className={styles.addButton}
+                onClick={() => {
+                  setModalMode('add');
+                  setEditItem(null);
+                  setIsModalOpen(true);
+                }}
+                type='button'
+                aria-label='지출 예정 추가'
+              >
+                <FaPlus />
+              </button>
+            </div>
 
             <div className={styles.scheduleList}>
               {scheduleExpenses.length > 0 ? (
@@ -279,13 +302,27 @@ export default function ExpenseInput() {
                     className={styles.scheduleCard}
                     data-card-id={item.id}
                   >
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() => handleDeleteScheduleExpenses(item.id)}
-                      aria-label='삭제'
-                    >
-                      <FaTimes />
-                    </button>
+                    <div className={styles.cardButtons}>
+                      <button
+                        className={styles.editButton}
+                        onClick={() => {
+                          setModalMode('edit');
+                          setEditItem(item);
+                          setIsModalOpen(true);
+                        }}
+                        aria-label='수정'
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        className={styles.deleteButton}
+                        onClick={() => handleDeleteScheduleExpenses(item.id)}
+                        aria-label='삭제'
+                      >
+                        <FaTimes />
+                      </button>
+                    </div>
+
                     <div className={styles.scheduleDate}>{item.date}</div>
                     <div className={styles.scheduleName}>{item.name}</div>
                     <div className={styles.scheduleAmount}>{item.amount}</div>
