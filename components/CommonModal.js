@@ -15,6 +15,7 @@
 */
 
 import { FaTimes } from 'react-icons/fa';
+import styles from '@/styles/CommonModal.module.css';
 
 export default function CommonModal({
   isOpen,

@@ -120,6 +120,37 @@ export default function ExpenseInput() {
     }
   };
 
+  // 모달(ExpenseScheduleModal)에서 저장 버튼 클릭 시 실행되는 핸들러
+  const handleModalSave = (formData) => {
+    if (modalMode === 'add') {
+      // 지출 예정 내역 추가
+      const newItem = {
+        id: Date.now(),
+        date: formData.date,
+        name: formData.name,
+        amount: formData.amount,
+      };
+
+      setScheduleExpenses((prev) => [...prev, newItem]);
+      alert('지출 예정 추가 완료');
+    } else if (modalMode === 'edit') {
+      // 지출 예정 내역 수정
+      setScheduleExpenses((prev) =>
+        prev.map((item) =>
+          item.id === editItem.id
+            ? {
+                ...item,
+                date: formData.date,
+                name: formData.name,
+                amount: formData.amount,
+              }
+            : item
+        )
+      );
+      alert('지출 예정이 수정되었습니다.');
+    }
+  };
+
   return (
     <MenuLayout>
       <div className={styles.pageContainer}>
@@ -337,6 +368,15 @@ export default function ExpenseInput() {
           </div>
         </div>
       </div>
+
+      {/** 모달 영역 */}
+      <ExpenseScheduleModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        mode={modalMode}
+        initialData={editItem}
+        onSave={handleModalSave}
+      />
     </MenuLayout>
   );
 }
