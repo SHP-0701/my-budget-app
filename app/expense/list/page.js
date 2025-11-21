@@ -75,6 +75,14 @@ export default function ExpenseList() {
       description: '저녁 회식',
       amount: 45000,
     },
+    {
+      id: 6,
+      date: '2025-11-12',
+      type: 'expense',
+      category: '식비',
+      description: '저녁 회식',
+      amount: 55000,
+    },
   ]);
 
   // 카테고리 목록
@@ -151,6 +159,93 @@ export default function ExpenseList() {
               </select>
             </div>
           </div>
+
+          <div className={styles.filterGroup}>
+            <label className={styles.filterLabel}>
+              <FaFilter className={styles.icon} />
+              구분
+            </label>
+            <select
+              name='type'
+              value={filters.type}
+              onChange={handleFilterChange}
+              className={styles.select}
+            >
+              <option value='all'>전체</option>
+              <option value='expense'>지출</option>
+              <option value='income'>수입</option>
+            </select>
+          </div>
+
+          <div className={styles.filterGroup}>
+            <label className={styles.filterLabel}>
+              <FaListAlt className={styles.icon} />
+              카테고리
+            </label>
+            <select
+              name='category'
+              value={filters.category}
+              onChange={handleFilterChange}
+              className={styles.select}
+            >
+              <option value='all'>전체</option>
+              {filters.type !== 'all' &&
+                categories[filters.type].map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+            </select>
+          </div>
+        </div>
+
+        {/** 지출/수입 내역 테이블 */}
+        <div className={styles.tableWrapper}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>날짜</th>
+                <th>구분</th>
+                <th>카테고리</th>
+                <th>내용</th>
+                <th>금액</th>
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((transaction) => (
+                <tr key={transaction.id}>
+                  <td>{transaction.date}</td>
+                  <td>
+                    <span
+                      className={
+                        transaction.type === 'income'
+                          ? styles.badgeIncome
+                          : styles.badgeExpense
+                      }
+                    >
+                      {transaction.type === 'income' ? '수입' : '지출'}
+                    </span>
+                  </td>
+                  <td>
+                    <span className={styles.categoryBadge}>
+                      {transaction.category}
+                    </span>
+                  </td>
+                  <td>{transaction.description}</td>
+                  <td
+                    className={
+                      transaction.type === 'income'
+                        ? styles.amountIncome
+                        : styles.amountExpense
+                    }
+                  >
+                    {transaction.type === 'income' ? '+' : '-'}
+                    {transaction.amount.toLocaleString()}원
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </MenuLayout>
