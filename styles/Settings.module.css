@@ -6,3 +6,377 @@
   ▢ 작성자: 박수훈(shpark)
 **********************************************************************************************************************************************
 */
+
+/* ========================================
+                컨테이너 
+======================================== */
+.container {
+  max-width: 1200px;
+}
+
+/* ========================================
+                헤더 영역 
+======================================== */
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2f80ed;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(47, 128, 237, 0.1);
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  border-left: 4px solid #2f80ed;
+  padding-left: 1rem;
+}
+
+/* ========================================
+                  탭 메뉴
+======================================== */
+.tabMenu {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.tabButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #6b7280;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabButton:hover {
+  background: #f3f4f6;
+  color: #2f80ed;
+}
+
+.tabButtonActive {
+  background: #2f80ed;
+  color: white;
+  box-shadow: 0 2px 4px rgba(47, 128, 237, 0.3);
+}
+
+.tabButtonActive:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.tabIcon {
+  font-size: 1.1rem;
+}
+
+/* ========================================
+                콘텐츠 영역
+======================================== */
+.contentArea {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  min-height: 500px;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* ========================================
+            공통(common) 폼 요소
+======================================== */
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #2f80ed;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+}
+
+.input:hover {
+  border-color: #2f80ed;
+}
+
+/* 저장 버튼 */
+.saveButton {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  background: #10b981;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);
+}
+
+.saveButton:hover {
+  background: #059669;
+  box-shadow: 0 4px 8px rgba(5, 150, 105, 0.4);
+}
+
+.saveButton:active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+              카테고리 관리 탭
+======================================== */
+.categorySection {
+  margin-bottom: 2.5rem;
+}
+
+.categorySection:last-child {
+  margin-bottom: 0;
+}
+
+.categoryTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.categoryList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.categoryItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #e0e7ff;
+  border-radius: 20px;
+  color: #4f46e5;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.categoryItem:hover {
+  background: #c7d2fe;
+}
+
+.deleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+  background: #4f46e5;
+  color: white;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+  background: #4338ca;
+  transform: scale(1.1);
+}
+
+.addCategoryButton {
+  padding: 0.5rem 1rem;
+  background: #dbeafe;
+  border: 2px dashed #60a5fa;
+  border-radius: 20px;
+  color: #2563eb;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.addCategoryButton:hover {
+  background: #bfdbfe;
+  border-color: #3b82f6;
+}
+
+/* ========================================
+            테마·화면 설정 탭
+======================================== */
+.radioGroup {
+  display: flex;
+  gap: 1rem;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radioLabel:hover {
+  border-color: #2f80ed;
+  background: #f0f9ff;
+}
+
+.radioLabel input[type='radio'] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.radioLabel input[type='radio']:checked + span {
+  color: #2f80ed;
+  font-weight: 700;
+}
+
+.radioLabel:has(input[type='radio']:checked) {
+  border-color: #2f80ed;
+  background: #eff6ff;
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #2f80ed;
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.1);
+}
+
+.select:hover {
+  border-color: #2f80ed;
+}
+
+/* ========================================
+            데이터 관리 탭
+======================================== */
+.dataGrid {
+  display: flex;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.dataSection {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.dataTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.dataDescription {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.dataButton {
+  padding: 0.75rem 1.5rem;
+  background: #60a5fa;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(96, 165, 250, 0.2);
+}
+
+.dataButton:hover {
+  background: #3b82f6;
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.dataButton:active {
+  transform: scale(0.98);
+}
+
+.dangerButton {
+  padding: 0.75rem 1.5rem;
+  background: #ef4444;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.2);
+}
+
+.dangerButton:hover {
+  background: #dc2626;
+  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+}
+
+.dangerButton:active {
+  transform: scale(0.98);
+}

@@ -13,23 +13,11 @@
 import { useState } from 'react';
 import MenuLayout from '@/components/MenuLayout';
 import styles from '@/styles/Settings.module.css';
-import { useRouter } from 'next/navigation';
-import { IoMdArrowBack } from 'react-icons/io';
-import { FaUser, FaFolder, FaPalette, FaDatabase } from 'react-icons/fa';
+import { FaFolder, FaPalette, FaDatabase } from 'react-icons/fa';
 
 export default function Settings() {
-  const router = useRouter();
-
   // 현재 활성된 탭 상태
-  const [activeTab, setActiveTab] = useState('profile');
-
-  // 더미 데이터(사용자 프로필)
-  const [profile, setProfile] = useState({
-    name: '박수훈',
-    email: 'shpark@test.com',
-    phone: '010-1234-5678',
-    profileImage: null,
-  });
+  const [activeTab, setActiveTab] = useState('category');
 
   // 더미 데이터(카테고리)
   const [categories, setCategories] = useState({
@@ -46,20 +34,10 @@ export default function Settings() {
 
   // 탭 목록
   const tabs = [
-    { id: 'profile', label: '사용자 프로필', icon: <FaUser /> },
     { id: 'category', label: '카테고리 관리', icon: <FaFolder /> },
     { id: 'theme', label: '테마·화면 설정', icon: <FaPalette /> },
     { id: 'data', label: '데이터 관리', icon: <FaDatabase /> },
   ];
-
-  // 프로필 입력 변경
-  const handleProfileChange = (e) => {
-    const { name, value } = e.target;
-    setProfile((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   // 카테고리 삭제
   const handleDeleteCategory = (type, category) => {
@@ -110,69 +88,6 @@ export default function Settings() {
 
         {/** 콘텐츠 영역 */}
         <div className={styles.contentArea}>
-          {/** 사용자 프로필 탭 */}
-          {activeTab === 'profile' && (
-            <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>사용자 프로필</h2>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>프로필 사진</label>
-                <div className={styles.profileImageWrapper}>
-                  <div className={styles.profileImage}>
-                    {profile.profileImage ? (
-                      <img src={profile.profileImage} alt='프로필' />
-                    ) : (
-                      <FaUser className={styles.defaultProfileIcon} />
-                    )}
-                  </div>
-                  <button className={styles.uploadButton} type='button'>
-                    사진 변경
-                  </button>
-                </div>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>이름</label>
-                <input
-                  type='text'
-                  name='name'
-                  value={profile.name}
-                  onChange={handleProfileChange}
-                  className={styles.input}
-                  placeholder='이름을 입력하세요'
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>이메일</label>
-                <input
-                  type='email'
-                  name='email'
-                  value={profile.email}
-                  onChange={handleProfileChange}
-                  className={styles.input}
-                  placeholder='이메일을 입력하세요'
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>전화번호</label>
-                <input
-                  type='tel'
-                  name='phone'
-                  value={profile.phone}
-                  onChange={handleProfileChange}
-                  className={styles.input}
-                  placeholder='전화번호를 입력하세요'
-                />
-              </div>
-
-              <button className={styles.saveButton} type='button'>
-                저장하기
-              </button>
-            </div>
-          )}
-
           {/** 카테고리 관리 탭 */}
           {activeTab === 'category' && (
             <div className={styles.section}>
@@ -303,35 +218,37 @@ export default function Settings() {
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>데이터 관리</h2>
 
-              <div className={styles.dataSection}>
-                <h3 className={styles.dataTitle}>데이터 내보내기</h3>
-                <p className={styles.dataDescription}>
-                  모든 지출/수입 데이터를 JSON 파일로 내보냅니다.
-                </p>
-                <button className={styles.dataButton} type='button'>
-                  데이터 내보내기
-                </button>
-              </div>
+              <div className={styles.dataGrid}>
+                <div className={styles.dataSection}>
+                  <h3 className={styles.dataTitle}>데이터 내보내기</h3>
+                  <p className={styles.dataDescription}>
+                    모든 지출/수입 데이터를 JSON 파일로 내보냅니다.
+                  </p>
+                  <button className={styles.dataButton} type='button'>
+                    데이터 내보내기
+                  </button>
+                </div>
 
-              <div className={styles.dataSection}>
-                <h3 className={styles.dataTitle}>데이터 가져오기</h3>
-                <p className={styles.dataDescription}>
-                  이전에 내보낸 JSON 파일을 불러옵니다.
-                </p>
-                <button className={styles.dataButton} type='button'>
-                  데이터 가져오기
-                </button>
-              </div>
+                <div className={styles.dataSection}>
+                  <h3 className={styles.dataTitle}>데이터 가져오기</h3>
+                  <p className={styles.dataDescription}>
+                    이전에 내보낸 JSON 파일을 불러옵니다.
+                  </p>
+                  <button className={styles.dataButton} type='button'>
+                    데이터 가져오기
+                  </button>
+                </div>
 
-              <div className={styles.dataSection}>
-                <h3 className={styles.dataTitle}>전체 데이터 삭제</h3>
-                <p className={styles.dataDescription}>
-                  모든 데이터를 영구적으로 삭제합니다. 이 작업은 되돌릴 수
-                  없습니다.
-                </p>
-                <button className={styles.dangerButton} type='button'>
-                  전체 데이터 삭제
-                </button>
+                <div className={styles.dataSection}>
+                  <h3 className={styles.dataTitle}>전체 데이터 삭제</h3>
+                  <p className={styles.dataDescription}>
+                    모든 데이터를 영구적으로 삭제합니다. 이 작업은 되돌릴 수
+                    없습니다.
+                  </p>
+                  <button className={styles.dangerButton} type='button'>
+                    전체 데이터 삭제
+                  </button>
+                </div>
               </div>
             </div>
           )}
