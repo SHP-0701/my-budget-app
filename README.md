@@ -14,3 +14,7 @@
 
 - Node.js 18.0 이상
 - MySQL 9.0 이상
+
+#### 다운로드 방법
+
+- git clone https://github.com/SHP-0701/my-budget-app
