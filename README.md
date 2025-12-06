@@ -21,5 +21,6 @@
 
 ##### 사용 라이브러리
 
-- react-datepicker
-- react-icons
+- react-datepicker(날짜 선택)
+- react-icons(다양한 아이콘)
+- date-fns(시간/날짜 표시)
