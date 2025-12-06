@@ -18,3 +18,8 @@
 #### 다운로드 방법
 
 - git clone https://github.com/SHP-0701/my-budget-app
+
+##### 사용 라이브러리
+
+- react-datepicker
+- react-icons
