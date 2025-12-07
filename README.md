@@ -1,4 +1,4 @@
-### my-budget-app
+## my-budget-app
 
 엑셀 스타일의 Next.js 가계부 앱
 
