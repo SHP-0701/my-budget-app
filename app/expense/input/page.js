@@ -27,6 +27,9 @@ import {
   FaPlus,
 } from 'react-icons/fa';
 import { IoMdArrowBack } from 'react-icons/io';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from 'date-fns/locale';
 
 export default function ExpenseInput() {
   const router = useRouter();
@@ -74,6 +77,16 @@ export default function ExpenseInput() {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  // DatePicker 전용 handler
+  const handleDateChange = (date) => {
+    const formattedDate = date ? date.toISOString().split('T')[0] : '';
+
+    setFormData((prev) => ({
+      ...prev,
+      date: formattedDate,
     }));
   };
 
@@ -181,12 +194,15 @@ export default function ExpenseInput() {
                     <FaCalendarAlt className={styles.icon} />
                     날짜
                   </label>
-                  <input
-                    type='date'
-                    name='date'
-                    value={formData.date}
-                    onChange={handleChange}
+
+                  {/** input type='date' 대신 datepicker 사용 */}
+                  <DatePicker
+                    selected={formData.date ? new Date(formData.date) : null}
+                    onChange={handleDateChange}
+                    dateFormat={'yyyy-MM-dd'}
                     className={styles.input}
+                    placeholderText='날짜를 선택하세요'
+                    locale={ko}
                   />
                 </div>
 
