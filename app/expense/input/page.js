@@ -30,6 +30,7 @@ import { IoMdArrowBack } from 'react-icons/io';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ko } from 'date-fns/locale';
+import { formatDate } from '@/utils/date';
 
 export default function ExpenseInput() {
   const router = useRouter();
@@ -41,7 +42,7 @@ export default function ExpenseInput() {
 
   // 입력 폼 상태(state) 관리
   const [formData, setFormData] = useState({
-    date: new Date().toISOString().split('T')[0], // 오늘 날짜
+    date: formatDate(new Date()),
     type: 'expense', // expense(지출) or income(수입)
     category: '',
     amount: '',
@@ -82,7 +83,7 @@ export default function ExpenseInput() {
 
   // DatePicker 전용 handler
   const handleDateChange = (date) => {
-    const formattedDate = date ? date.toISOString().split('T')[0] : '';
+    const formattedDate = formatDate(date);
 
     setFormData((prev) => ({
       ...prev,
