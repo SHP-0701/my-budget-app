@@ -52,7 +52,7 @@ export default function ExpenseInput() {
   // 카테고리 목록(지출/수입 별)
   const categories = {
     expense: ['식비', '교통', '쇼핑', '의료', '문화', '기타'],
-    income: ['급여', '상여', '기타'],
+    income: ['급여', '배당금', '상여', '기타'],
   };
 
   // 이번 달 지출 예정 내역(더미 데이터)
