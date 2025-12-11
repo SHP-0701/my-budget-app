@@ -13,7 +13,6 @@ import { format } from 'date-fns';
 
 /**
  * 날짜 객체(date)를 받아 'yyyy-MM-dd' 형식의 문자열로 반환
- * 로컬 타임존(TZ) 유지
  * @param { Date | string | number } date
  * @returns { string } 'yyyy-MM-dd'
  */
