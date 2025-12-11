@@ -18,6 +18,7 @@
 import { useState, useEffect } from 'react';
 import CommonModal from '@/components/CommonModal';
 import { FaCalendarAlt, FaMoneyBillWave, FaStickyNote } from 'react-icons/fa';
+import { formatDate } from '@/utils/date';
 import styles from '@/styles/ExpenseScheduleModal.module.css';
 
 export default function ExpenseScheduleModal({
