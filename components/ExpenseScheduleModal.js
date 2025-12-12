@@ -18,8 +18,13 @@
 import { useState, useEffect } from 'react';
 import CommonModal from '@/components/CommonModal';
 import { FaCalendarAlt, FaMoneyBillWave, FaStickyNote } from 'react-icons/fa';
-import { formatDate } from '@/utils/date';
 import styles from '@/styles/ExpenseScheduleModal.module.css';
+
+// 날짜 관련 라이브러리 & 유틸 함수
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { ko } from 'date-fns/locale';
+import { formatDate } from '@/utils/date';
 
 export default function ExpenseScheduleModal({
   isOpen,
@@ -29,7 +34,7 @@ export default function ExpenseScheduleModal({
   onSave,
 }) {
   const [formData, setFormData] = useState({
-    data: '',
+    date: '',
     name: '',
     amount: '',
   });
@@ -47,7 +52,7 @@ export default function ExpenseScheduleModal({
       } else {
         // 등록 모드인 경우 빈 폼
         setFormData({
-          date: new Date().toISOString().split('T')[0],
+          date: formatDate(new Date()),
           name: '',
           amount: '',
         });
@@ -61,6 +66,14 @@ export default function ExpenseScheduleModal({
     setFormData((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  // datepicker 핸들러
+  const handleDateChange = (date) => {
+    setFormData((prev) => ({
+      ...prev,
+      date: formatDate(date),
     }));
   };
 
@@ -98,12 +111,13 @@ export default function ExpenseScheduleModal({
             <FaCalendarAlt className={styles.icon} />
             날짜
           </label>
-          <input
-            type='date'
-            name='date'
-            value={formData.date}
-            onChange={handleChange}
+          <DatePicker
+            selected={formData.date ? new Date(formData.date) : null}
+            onChange={handleDateChange}
+            dateFormat={'yyyy-MM-dd'}
             className={styles.input}
+            placeholderText='날짜를 선택하세요'
+            locale={ko}
             required
           />
         </div>
