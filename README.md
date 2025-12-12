@@ -24,3 +24,4 @@
 - react-datepicker(날짜 선택)
 - react-icons(다양한 아이콘)
 - date-fns(시간/날짜 표시)
+- recharts(그래프/차트 등 출력 라이브러리)
