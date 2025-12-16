@@ -131,7 +131,7 @@ export default function StatsPage() {
         {/** [중단] 수입/지출 흐름(막대 차트) */}
         <section className={styles.chartSection}>
           <h3 className={styles.sectionTitle}>
-            <FaChartBar /> 최근 4개월 간 수입/지출 흐름
+            <FaChartBar /> 최근 4개월 간 수입/지출 차트
           </h3>
           <div className={styles.chartWrapper}>
             <ResponsiveContainer width='100%' height='100%'>
