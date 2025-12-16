@@ -40,22 +40,22 @@ export default function StatsPage() {
   // dummy-data(2)
   const BAR_DATA = [
     {
-      name: '1주',
+      name: '9월',
       income: 500000,
       expense: 240000,
     },
     {
-      name: '2주',
+      name: '10월',
       income: 0,
       expense: 450000,
     },
     {
-      name: '3주',
+      name: '11월',
       income: 1200000,
       expense: 180000,
     },
     {
-      name: '4주',
+      name: '12월',
       income: 1800000,
       expense: 380000,
     },
@@ -131,7 +131,7 @@ export default function StatsPage() {
         {/** [중단] 수입/지출 흐름(막대 차트) */}
         <section className={styles.chartSection}>
           <h3 className={styles.sectionTitle}>
-            <FaChartBar /> 월간 수입/지출 흐름
+            <FaChartBar /> 최근 4개월 간 수입/지출 흐름
           </h3>
           <div className={styles.chartWrapper}>
             <ResponsiveContainer width='100%' height='100%'>
@@ -140,7 +140,7 @@ export default function StatsPage() {
                 margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
               >
                 <CartesianGrid strokeDasharray='3 3' vertical={false} />
-                <XAxis dataKey='name' tick={{ fontSize: 12 }} />
+                <XAxis dataKey='name' tick={{ fontSize: '0.95rem' }} />
                 <YAxis tick={{ fontSize: 12 }} />
                 <Tooltip
                   formatter={(value) => `${formatMoney(value)}원`}
