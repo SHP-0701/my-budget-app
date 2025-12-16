@@ -16,17 +16,29 @@
 
 /* --- 상단 헤더 및 요약 카드 --- */
 .header {
-  margin-bottom: 24px;
+  margin-bottom: 2rem;
 }
 
 .title {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color: #333;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #2f80ed;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(47, 128, 237, 0.1);
+  display: block;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  border-left: 4px solid #2f80ed;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+/* --- 요약 카드 영역 --- */
+.summarySection {
+  margin-bottom: 24px;
 }
 
 .summaryCards {
