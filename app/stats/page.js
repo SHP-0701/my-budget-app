@@ -97,8 +97,15 @@ export default function StatsPage() {
     <MenuLayout>
       <div className={styles.container}>
         {/** [상단] 헤더 및 요약 카드 */}
-        <header className={styles.header}>
-          <div className={styles.title}>{currentDate} 통계</div>
+        <div className={styles.header}>
+          <h1 className={styles.title}>통계/분석</h1>
+          <p className={styles.subtitle}>
+            {currentDate}의 지출 흐름을 한눈에 파악하세요
+          </p>
+        </div>
+
+        {/** 요약 카드 섹션 */}
+        <section className={styles.summarySection}>
           <div className={styles.summaryCards}>
             <div className={styles.card}>
               <span className={styles.cardLabel}>총 수입</span>
@@ -119,7 +126,7 @@ export default function StatsPage() {
               </span>
             </div>
           </div>
-        </header>
+        </section>
 
         {/** [중단] 수입/지출 흐름(막대 차트) */}
         <section className={styles.chartSection}>
