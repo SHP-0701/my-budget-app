@@ -6,3 +6,152 @@
   ▢ 작성자: 박수훈(shpark)
 **********************************************************************************************************************************************
 */
+
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* --- 상단 헤더 및 요약 카드 --- */
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summaryCards {
+  display: flex;
+  gap: 12px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardLabel {
+  font-size: 16px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.cardValue {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* 금액 색상 */
+.incomeText {
+  color: #4dabf7;
+}
+.expenseText {
+  color: #ff6b6b;
+}
+.balanceText {
+  color: #333;
+}
+
+/* --- 공통 섹션(section) 스타일 --- */
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* --- 중단 그래프 섹션 --- */
+.chartSection {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
+}
+
+.chartWrapper {
+  width: 100%;
+  height: 250px;
+}
+
+/* --- 하단 분할 섹션(도넛 + 랭킹) --- */
+.rowSection {
+  display: flex;
+  gap: 24px;
+}
+
+.halfCard {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* --- 랭킹 리스트 스타일 --- */
+.rankingList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.rankItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rankHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+}
+
+.rankBadge {
+  margin-right: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+.rankBarBg {
+  width: 100%;
+  height: 8px;
+  background-color: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.rankBarFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-in-out;
+}
+
+.rankAmount {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
+}
