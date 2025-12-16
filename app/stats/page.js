@@ -120,7 +120,7 @@ export default function StatsPage() {
               </span>
             </div>
             <div className={styles.card}>
-              <span className={styles.cardLabel}>남은 돈</span>
+              <span className={styles.cardLabel}>남은 금액</span>
               <span className={`${styles.cardValue} ${styles.balanceText}`}>
                 {formatMoney(SUMMARY_DATA.balance)}
               </span>
@@ -137,11 +137,15 @@ export default function StatsPage() {
             <ResponsiveContainer width='100%' height='100%'>
               <BarChart
                 data={BAR_DATA}
-                margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+                margin={{ top: 20, right: 20, left: 0, bottom: 5 }}
               >
                 <CartesianGrid strokeDasharray='3 3' vertical={false} />
                 <XAxis dataKey='name' tick={{ fontSize: '0.95rem' }} />
-                <YAxis tick={{ fontSize: 12 }} />
+                <YAxis
+                  tick={{ fontSize: '0.85rem' }}
+                  width={80}
+                  tickFormatter={(value) => `${value / 10000}만`}
+                />
                 <Tooltip
                   formatter={(value) => `${formatMoney(value)}원`}
                   contentStyle={{
