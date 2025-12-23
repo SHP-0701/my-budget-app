@@ -20,10 +20,19 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true);
+    setErrorMsg('');
+
+    // 테스트용 Error 발생
+    if (password.length < 4) {
+      setErrorMsg('비밀번호는 4자리 이상이어야 합니다.');
+      setLoading(false);
+      return;
+    }
 
     // dummy login logic(1초 뒤 무조건 로그인 성공)
     console.log(
@@ -65,6 +74,9 @@ export default function LoginPage() {
               required
             />
           </div>
+
+          {errorMsg && <div className={styles.error}>{errorMsg}</div>}
+
           <button type='submit' className={styles.button} disabled={loading}>
             {loading ? '로그인 중...' : '로그인'}
           </button>
