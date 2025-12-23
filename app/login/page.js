@@ -13,3 +13,63 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import styles from '@/styles/Login.module.css';
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    // dummy login logic(1초 뒤 무조건 로그인 성공)
+    console.log(
+      `[/login/page.js] 로그인 시도: (이메일)${email} / (패스워드)${password}`
+    );
+
+    setTimeout(() => {
+      alert('로그인 성공(Test)');
+      router.push('/expense'); // 지출관리 대시보드로 이동
+    }, 1000);
+  };
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>SH Budget</h1>
+        <p className={styles.subtitle}>로그인이 필요합니다.</p>
+      </div>
+
+      <div className={styles.loginBox}>
+        <form onSubmit={handleLogin} className={styles.form}>
+          <div className={styles.inputGroup}>
+            <input
+              type='email'
+              placeholder='이메일'
+              className={styles.input}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className={styles.inputGroup}>
+            <input
+              type='password'
+              placeholder='비밀번호'
+              className={styles.input}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type='submit' className={styles.button} disabled={loading}>
+            {loading ? '로그인 중...' : '로그인'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
